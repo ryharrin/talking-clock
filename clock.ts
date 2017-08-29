@@ -1,7 +1,7 @@
 type Time = {
   hours: number
   minutes: number
-  hourString: string | null
+  hourString: string
   minuteString: string
   isMidnight: boolean
   isMidday: boolean
@@ -21,7 +21,7 @@ const getMinutes = (time: string): number => {
   return parseInt(time.slice(3,5), 10)
 }
 
-const stringifyHours = (hours: number): string|null => {
+const stringifyHours = (hours: number): string => {
   return hourStrings[hours % 12]
 }
 

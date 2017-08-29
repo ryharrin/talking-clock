@@ -4,7 +4,8 @@
     "jsRules": {},
     "rules": {
         "no-trailing-whitespace": false,
-        "no-empty": false
+        "no-empty": false,
+        "no-multi-spaces": false
     },
     "rulesDirectory": []
 }

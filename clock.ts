@@ -26,22 +26,24 @@ const stringifyHours = (hours: number): string => {
 }
 
 const getStandardMinuteString = (minutes: number) => {
-  let tens = tenMinuteStrings[Math.floor(minutes / 10)];
-  let singles = minutes % 10 === 0 ? '' : minuteStrings[minutes % 10];
+  let tens = tenMinuteStrings[Math.floor(minutes / 10)]
+  let singles = minutes % 10 === 0 ? '' : minuteStrings[minutes % 10]
   return `${tens}${singles}`
 }
 
 const stringifyMinutes = (minutes: number): string => {
-  const isTeens = (minutes >= 10 && minutes < 20)
-  const isSingleDigit = minutes < 10
-  const isZero = minutes === 0
-  return (isZero || isTeens) ? minuteStrings[minutes] :
-          isSingleDigit ? `oh${minuteStrings[minutes]}` :
-                            getStandardMinuteString(minutes)
+  const isOver19 = minutes > 19
+  const isSingleDigit = minutes < 10 && minutes > 0
+
+  return isOver19       ? getStandardMinuteString(minutes) :
+         isSingleDigit  ? `oh${minuteStrings[minutes]}` :
+                          minuteStrings[minutes]
 }
 
 const getTimeOfDay = (hours: number): string => {
-  return hours < 12 ? 'morning' : hours > 17 ? 'evening' : 'afternoon'
+  return hours < 12  ? 'morning' :
+         hours >= 18 ? 'evening' :
+                       'afternoon'
 }
 
 const parseTimeString = (timeString: string): Time => {
@@ -61,8 +63,9 @@ const buildStandardTimeString = (time: Time): string => {
 
 export const speakTime = (time: string): string => {
   const parsedTime = parseTimeString(time)
+
   return parsedTime.isMidnight ? 'midnight' :
-         parsedTime.isMidday ? 'midday' :
-           buildStandardTimeString(parsedTime)
+         parsedTime.isMidday   ? 'midday' :
+                                 buildStandardTimeString(parsedTime)
 
 }

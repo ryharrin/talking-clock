@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest ./*",
-    "watch": "jest --watch ./*",
-    "watch:cover": "jest --coverage --watch ./*",
-    "lint": "tslint --project ."
+    "watch": "jest --watch ./*"
   },
   "author": "",
   "license": "ISC",
